@@ -3,6 +3,10 @@
 Reducer is an LKM that registers a char device and sums up all the numbers written to it.
 This is a very simple module, created to learn about char devices and Kernal Modules.
 
+- [Installation](#Installation)
+- [Usage](#Usage)
+- [Reference](#Reference)
+
 # Usage
 Once the module is loaded, a character device file named `/dev/reducer` will be created(see Installation steps)
 #### Write numbers 
@@ -71,5 +75,6 @@ sudo mknod /dev/reducer c $dev_no 0
 >```bash
 >sudo ./install_lmk.sh del reducer.ko reducer
 >```
+
 # Reference
 - [https://tldp.org/LDP/lkmpg/2.6/lkmpg.pdf](https://tldp.org/LDP/lkmpg/2.6/lkmpg.pdf)
