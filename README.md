@@ -8,7 +8,7 @@ This is a very simple module, created to learn about char devices and Kernal Mod
 - [Reference](#Reference)
 
 # Usage
-Once the module is loaded, a character device file named `/dev/reducer` will be created(see Installation steps)
+Once the module is loaded, a character device file named `/dev/reducer` has be created(see Installation steps)
 #### Write numbers 
 ```bash
 echo 15 > /dev/reducer
