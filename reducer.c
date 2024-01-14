@@ -119,18 +119,18 @@ static struct file_operations fops = {
  * @brief This function is called, when the module is loaded into the kernel
  */
 static int __init my_init(void) {
-	Major = register_chrdev(0, DEVICE_NAME, &fops);
-	
-	if (Major < 0) {
-		printk(KERN_ALERT "Registering char device failed with %d\n", Major);
-		return Major;
-	}
+    Major = register_chrdev(0, DEVICE_NAME, &fops);
+    
+    if (Major < 0) {
+        printk(KERN_ALERT "Registering char device failed with %d\n", Major);
+        return Major;
+    }
     init_ring_buf();
-	printk(KERN_INFO "Hi there. Major number assigned: %d.\n", Major);
-	printk(KERN_INFO "Create a dev file with\n");	
-	printk(KERN_INFO "'mknod /dev/%s c %d 0'.\n", DEVICE_NAME, Major);
-	
-	return 0;
+    printk(KERN_INFO "Hi there. Major number assigned: %d.\n", Major);
+    printk(KERN_INFO "Create a dev file with\n");    
+    printk(KERN_INFO "'mknod /dev/%s c %d 0'.\n", DEVICE_NAME, Major);
+    
+    return 0;
 }
 
 /**
@@ -138,7 +138,7 @@ static int __init my_init(void) {
  */
 static void __exit my_exit(void) {
     printk("Goodbye, Kernel\n");
-	unregister_chrdev(Major, DEVICE_NAME);
+    unregister_chrdev(Major, DEVICE_NAME);
 }
 
 /**
@@ -177,7 +177,7 @@ static int device_release(struct inode *inode, struct file *file){
     module_put(THIS_MODULE);
 
     ring_insert(' ');
-	return 0;
+    return 0;
 }
 
 /**
@@ -187,24 +187,24 @@ static int device_release(struct inode *inode, struct file *file){
  */
 static ssize_t device_read(struct file *file, char __user *buffer, size_t length, loff_t *offset){
     int bytes_read = 0;
-	
-    // if at end, return 0
- 	if (*msg_Ptr == '\0')
- 		return 0;
 
- 	while (length && *msg_Ptr) {
- 		/*
- 		 * buffer is in userspace
+    // if at end, return 0
+     if (*msg_Ptr == '\0')
+         return 0;
+
+     while (length && *msg_Ptr) {
+         /*
+          * buffer is in userspace
          * put_user is used to copy data to it
          */
-	 	put_user(*(msg_Ptr++), buffer++);
- 		length--;
-		bytes_read++;
- 	}
+         put_user(*(msg_Ptr++), buffer++);
+         length--;
+        bytes_read++;
+     }
 
     // return number of bytes read
     // 0 indicates no more data is left to read
- 	return bytes_read;
+     return bytes_read;
 }
 
 /**
@@ -213,16 +213,16 @@ static ssize_t device_read(struct file *file, char __user *buffer, size_t length
  */
 static ssize_t
 device_write(struct file *filp, const char *buff, size_t len, loff_t * off){
-	int i = 0;
+    int i = 0;
     char c;
 
-	for (i=0; i < len; i++){
-		get_user(c, buff+i);
+    for (i=0; i < len; i++){
+        get_user(c, buff+i);
         ring_insert(c);
-	}
+    }
 
     // return the number of bytes copied
-	return i;
+    return i;
 }
 
 module_init(my_init);
