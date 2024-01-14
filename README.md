@@ -1,7 +1,7 @@
 # Reducer: Simple Loadable Linux Kernel Module
 
 Reducer is a LKM that registers a char device, and sums up all the numbers written to it.
-This a very simple module, created to learn about char devices and Kernal Modules.
+This is a very simple module, created to learn about char devices and Kernal Modules.
 
 # Usage
 Once the module is loaded, a character device file named `/dev/reducer` will be created(see Installation steps)
