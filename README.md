@@ -3,7 +3,28 @@
 Reducer is a LKM that registers a char device, and sums up all the numbers written to it.
 This a very simple module, created to learn about char devices and Kernal Modules.
 
+# Usage
+Once the module is loaded, a character device file named `/dev/reducer` will be created(see Installation steps)
+#### Write numbers 
+```bash
+echo 15 > /dev/reducer
+echo 6 > /dev/reducer
+```
+#### Reading the Sum
+```bash
+cat /dev/reducer
+# 21
+```
+#### Multiple numbers can also be written together
+```bash
+echo "4 82 2" > /dev/reducer
+echo "5" > /dev/reducer
+echo "8" > /dev/reducer
 
+cat /dev/reducer
+101
+```
+#### Using python/any other language
 
 # Installation
 1. **Clone the Repository:**
@@ -12,6 +33,7 @@ git clone https://github.com/hrushikeshj/lkm-reducer.git
 cd lkm-reducer
 ```
 2. **Build the Module:**
+It's recommended to have your self-compiled kernal.
 ```bash
 make
 ```
@@ -21,7 +43,7 @@ sudo insmod reducer.ko
 ```
 4. **Create device file**
    
-Get the device number either through kernal log(`sudo dmesg`) or `/proc/devices`
+Get the device number either through kernal log(`sudo dmesg`) or `/proc/devices`. The char device need not only be in `/dev`, but by convention it is placed there.
 ```bash
 dev_no=$(cat /proc/devices | grep reducer | awk '{print $1;}')
 # dev_no eg, 238
