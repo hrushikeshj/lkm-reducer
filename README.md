@@ -25,6 +25,17 @@ cat /dev/reducer
 101
 ```
 #### Using python/any other language
+```python
+f=open('/dev/reducer', 'w')
+f.write('10 5')
+f.close()
+
+f=open('/dev/reducer', 'r')
+sum_r = f.read()
+print(sum_r) # o/p: 15
+
+f.close()
+```
 
 # Installation
 1. **Clone the Repository:**
