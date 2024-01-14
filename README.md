@@ -24,7 +24,7 @@ echo "8" > /dev/reducer
 cat /dev/reducer
 101
 ```
-#### Using python/any other language
+#### Using Python/any other language
 ```python
 f=open('/dev/reducer', 'w') # open in write mode
 f.write('10 5')
@@ -44,7 +44,7 @@ git clone https://github.com/hrushikeshj/lkm-reducer.git
 cd lkm-reducer
 ```
 2. **Build the Module:**
-It's recommended to have your self-compiled kernal.
+It's recommended to have your self-compiled kernel.
 ```bash
 make
 ```
@@ -54,14 +54,14 @@ sudo insmod reducer.ko
 ```
 4. **Create device file**
    
-Get the device number either through kernal log(`sudo dmesg`) or `/proc/devices`. The char device need not only be in `/dev`, but by convention it is placed there.
+Get the device number through kernel log(`sudo dmesg`) or `/proc/devices`. The char device need not only be in `/dev`, but by convention, it is placed there.
 ```bash
 dev_no=$(cat /proc/devices | grep reducer | awk '{print $1;}')
 # dev_no eg, 238
 sudo mknod /dev/reducer c $dev_no 0
 ```
 >#### Note:
->Step 3 and 4, i.e to load the module and create the device file can be easily done using the
+> Steps 3 and 4, i.e, to load the module and create the device file can be easily done using the
 >`install_lmk.sh` script.
 >```bash
 >chmod +x install_lmk.sh
