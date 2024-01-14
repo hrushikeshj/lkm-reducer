@@ -26,11 +26,11 @@ cat /dev/reducer
 ```
 #### Using python/any other language
 ```python
-f=open('/dev/reducer', 'w')
+f=open('/dev/reducer', 'w') # open in write mode
 f.write('10 5')
 f.close()
 
-f=open('/dev/reducer', 'r')
+f=open('/dev/reducer', 'r') # open in read mode
 sum_r = f.read()
 print(sum_r) # o/p: 15
 
